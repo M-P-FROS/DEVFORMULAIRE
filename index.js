@@ -1,7 +1,7 @@
-
-// j'accède au formulaire afin de définir le nom des varaiables à contrôler
 let form = document.querySelector('form');
+// recherche de l'espace commentaire
 
+// recherche des variabales à tester
 let baliseFirstName = document.getElementById("firt-name")
 let firstName = baliseFirstName.value
 
@@ -20,9 +20,9 @@ let messageMax=baliseMessageMax.textContent
 let baliseEnvoyer = document.getElementById("submit")
 let envoyer = baliseEnvoyer.send
 
-// si tous les champs sont justes (non vide et <500caratères), j'envoie
-//sinon, j'empeche lenvoi et j'emets le message d'erreur
-//empecher l'envoi par défaut:
+// test du formulaire (nom, prenom et commentaire)
+// En cas d'erreur, envoi du message d'erreur (2 messages #)
+// si tous les champs sont justes (non vide et <500caratères), je poursuis
 
 
 if (firstName==""){
@@ -47,35 +47,39 @@ console.log(messageMax)
 return false;
 }
 else
+
 // l'évenement submit recharge automatiquement la page, donc il faut bloquer cette instruction
-//pour iceer une fonction qui va implémenter le nouveau commentaire.
+//pour creer une fonction qui va implémenter le nouveau commentaire.
 form.addventListener("submit",(event)=>{
 event.preventDefault();
 })
 
-
+// recherche de l'espace commentaire
 let commentList = document.querySelector('comment-list')
 
-function cutComment(firstName,lastName,message){
-    let div1 = document.createElement('class', "flex space-x-4 text-sm text-gray-500")
-    let div2 = document.createElement('class',"flex-1 py-10 border-t border-gray-200")
-    let div3 = document.createtexteNode('class', "font-medium text-gray-900")
-    let div4 = document.createTextNode('class', "prose prose-sm mt-4 max-w-none text-gray-500")
-    let newp = document.createElement("p")
-    let user = firstName + lastName
 
-    div1.appendChild(commentList)
+// creation des nouveaux espace et introduction des contenus
+function moveComment(firstName,lastName,message){
+    let div1 = document.createElement('class', "flex space-x-4 text-sm text-gray-500")
+    let div2 = document.createElement('class',"flex-1 py-10")
+    let h3 = document.createTexteNode('class', "font-medium text-gray-900")
+    let div4 = document.createElement('class', "prose prose-sm mt-4 max-w-none text-gray-500")
+    let newP = document.createTexteNode("p")
+    let userName = firstName+" " + lastName;
+
+    commentList.appendChild(div1)
     div1.appendChild(div2);
-    div2.appendChild(div3)
-    div3.appendChild(div4)
-    div4.appendChild(p)
-    message.appendchild(newp)
-    div3.appendChild(user)
+    div2.appendChild(h3)
+    h3.appendChild(userName)
+    div2.appendChild(div4)
+    div4.appendChild(newP)
+    newP.appendchild(message)
+   
    
 }
 
-function clearForm()
+// je reinitialise les champs du formulaire
 
-document.getElementById('first-name').value = "" ;
-              document.getElementById ('last-name').value ="" ;
-              document.getElementById('message').value = "";
+document.getElementById('first-name').remove();
+document.getElementById ('last-name').remove();
+document.getElementById('message').remove();
